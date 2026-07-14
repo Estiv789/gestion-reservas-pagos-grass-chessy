@@ -1,0 +1,14 @@
+{
+  "name": "gestion-reservas-pagos-grass-chessy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Aplicación web real para la gestión de reservas y pagos del Grass Chessy.",
+  "scripts": {
+    "install:all": "npm install --prefix backend && npm install --prefix frontend",
+    "db:setup": "npm run db:setup --prefix backend",
+    "dev": "concurrently \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

@@ -1,0 +1,14 @@
+node_modules/
+backend/node_modules/
+frontend/node_modules/
+backend/data/*.db-wal
+backend/data/*.db-shm
+backend/tests/*.db
+backend/tests/*.db-wal
+backend/tests/*.db-shm
+backend/uploads/*
+!backend/uploads/.gitkeep
+.env
+backend/.env
+.DS_Store
+backend/data/*.db
