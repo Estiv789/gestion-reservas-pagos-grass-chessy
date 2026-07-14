@@ -10,8 +10,36 @@ const pagoRoutes = require('./routes/pagos.routes');
 const reporteRoutes = require('./routes/reportes.routes');
 
 const app = express();
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://gestion-reservas-pagos-grass-chessy.vercel.app',
+  process.env.FRONTEND_URL
+]
+  .filter(Boolean)
+  .map((origin) => origin.replace(/\/$/, ''));
 
-app.use(cors({ origin: process.env.FRONTEND_URL || 'http://localhost:5173' }));
+app.use(
+  cors({
+    origin(origin, callback) {
+      // Permite solicitudes sin origen, como Postman o pruebas del servidor.
+      if (!origin) {
+        return callback(null, true);
+      }
+
+      const normalizedOrigin = origin.replace(/\/$/, '');
+
+      if (allowedOrigins.includes(normalizedOrigin)) {
+        return callback(null, true);
+      }
+
+      return callback(
+        new Error(`Origen no permitido por CORS: ${origin}`)
+      );
+    },
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+  })
+);
 app.use(express.json({ limit: '1mb' }));
 app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 
