@@ -1,7 +1,8 @@
 import React, { Fragment, useEffect, useMemo, useState } from 'react';
 
-const BACKEND =
-  import.meta.env.VITE_BACKEND_URL || 'http://localhost:4000';
+const BACKEND = (
+  import.meta.env.VITE_BACKEND_URL || 'http://localhost:4000'
+).replace(/\/$/, '');
 
 const API = `${BACKEND}/api`;
 
