@@ -12,3 +12,6 @@ backend/uploads/*
 backend/.env
 .DS_Store
 backend/data/*.db.vscode/
+
+.vscode/
+backend/data/
